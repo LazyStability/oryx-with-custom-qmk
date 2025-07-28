@@ -51,15 +51,15 @@ enum tap_dance_codes {
   DANCE_23,
 };
 
-#define DUAL_FUNC_0 LT(4, KC_M)
+#define DUAL_FUNC_0 LT(8, KC_6)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
     DE_CIRC,        DE_LESS,        DE_SLSH,        DE_LBRC,        DE_LPRN,        DE_LCBR,        OSL(1),                                         OSL(1),         DE_RCBR,        DE_RPRN,        DE_RBRC,        DE_BSLS,        DE_MORE,        KC_TRANSPARENT, 
     DE_SCLN,        KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           DE_GRV,                                         DE_ACUT,        KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           DE_QST,         
-    KC_ESCAPE,      MT(MOD_LGUI, KC_A),MT(MOD_LALT, KC_S),MT(MOD_LSFT, KC_D),MT(MOD_LCTL, KC_F),KC_G,           KC_TRANSPARENT,                                                                 DE_COLN,        KC_H,           MT(MOD_RCTL, KC_J),MT(MOD_RSFT, KC_K),MT(MOD_RALT, KC_L),MT(MOD_RGUI, DE_HASH),DE_PLUS,        
+    KC_ESCAPE,      MT(MOD_LGUI, KC_A),MT(MOD_LALT, KC_S),MT(MOD_LSFT, KC_D),MT(MOD_LCTL, KC_F),KC_G,           KC_F20,                                                                         DE_COLN,        KC_H,           MT(MOD_RCTL, KC_J),MT(MOD_RSFT, KC_K),MT(MOD_RALT, KC_L),MT(MOD_RGUI, DE_HASH),DE_PLUS,        
     OSL(2),         KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         DE_MINS,        OSL(2),         
-    KC_TRANSPARENT, CW_TOGG,        KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       KC_DELETE,                                                                                                      TD(DANCE_1),    KC_UP,          KC_DOWN,        KC_TRANSPARENT, CW_TOGG,        KC_TRANSPARENT, 
+    KC_F21,         CW_TOGG,        KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       KC_DELETE,                                                                                                      TD(DANCE_1),    KC_UP,          KC_DOWN,        KC_TRANSPARENT, CW_TOGG,        KC_F21,         
     KC_SPACE,       TD(DANCE_0),    TG(2),                          TG(2),          KC_TAB,         KC_ENTER
   ),
   [1] = LAYOUT_moonlander(
