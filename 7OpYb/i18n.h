@@ -1,6 +1,3 @@
-#define DE_UE KC_LBRC
-#define DE_OE KC_SCLN
-#define DE_SS KC_MINS
 #define DE_CIRC KC_GRV
 #define DE_LESS KC_NUBS
 #define DE_SLSH S(KC_7)
@@ -30,5 +27,8 @@
 #define DE_AT ALGR(KC_Q)
 #define DE_TILD ALGR(KC_RBRC)
 #define DE_AMPR S(KC_6)
+#define DE_UE KC_LBRC
+#define DE_OE KC_SCLN
 #define DE_EQL S(KC_0)
+#define DE_SS KC_MINS
 #define DE_EURO ALGR(KC_E)

@@ -46,7 +46,7 @@ enum tap_dance_codes {
   DANCE_23,
 };
 
-#define DUAL_FUNC_0 LT(2, KC_F11)
+#define DUAL_FUNC_0 LT(15, KC_6)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
@@ -92,15 +92,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-const uint16_t PROGMEM combo0[] = { KC_U, KC_E, COMBO_END};
-const uint16_t PROGMEM combo1[] = { KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM combo2[] = { MT(MOD_LALT, KC_S), KC_E, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, DE_UE),
-    COMBO(combo1, DE_OE),
-    COMBO(combo2, DE_SS),
-};
 
 
 extern rgb_config_t rgb_matrix_config;
