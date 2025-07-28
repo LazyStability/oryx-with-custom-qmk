@@ -6,7 +6,6 @@
 #define DE_LCBR ALGR(KC_7)
 #define DE_SCLN S(KC_COMM)
 #define DE_GRV S(KC_EQL)
-#define DE_UNDS S(KC_SLSH)
 #define DE_RCBR ALGR(KC_0)
 #define DE_RPRN S(KC_9)
 #define DE_RBRC ALGR(KC_9)
