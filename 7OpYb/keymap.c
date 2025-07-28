@@ -1,3 +1,8 @@
+// Custom overrides
+#define KC_F20 QK_REPEAT_KEY
+#define KC_F21 QK_LOCK
+
+// ============================ END OVERRIDES ==================================
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
@@ -1162,3 +1167,5 @@ const key_override_t *key_overrides[] = {
 	&meta_nine_override,
 	&meta_zero_override,
 };
+#undef KC_F20
+#undef KC_F21
