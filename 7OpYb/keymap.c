@@ -1089,3 +1089,56 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_22] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_22, dance_22_finished, dance_22_reset),
         [DANCE_23] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_23, dance_23_finished, dance_23_reset),
 };
+
+
+
+
+// Custom QMK here
+// Overrides
+const key_override_t delete_key_override =
+	ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+// Override Meta+symbols to be meta+numbers instead
+//DE_SLSH, DE_LBRC, DE_LPRN, DE_LCBR, DE_RCBR, DE_RPRN, DE_RBRC, DE_BSLS, DE_MORE
+const key_override_t meta_one_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LESS, G(KC_1));
+
+const key_override_t meta_two_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_SLSH, G(KC_2));
+
+const key_override_t meta_three_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LBRC, G(KC_3));
+
+const key_override_t meta_four_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LPRN, G(KC_4));
+
+const key_override_t meta_five_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LCBR, G(KC_5));
+
+const key_override_t meta_six_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_RCBR, G(KC_6));
+
+const key_override_t meta_seven_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_RPRN, G(KC_7));
+
+const key_override_t meta_eight_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_RBRC, G(KC_8));
+
+const key_override_t meta_nine_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_BSLS, G(KC_9));
+
+const key_override_t meta_zero_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_MORE, G(KC_0));
+
+const key_override_t *key_overrides[] = {
+	&delete_key_override,
+	&meta_one_override,
+	&meta_two_override,
+	&meta_three_override,
+	&meta_four_override,
+	&meta_five_override,
+	&meta_six_override,
+	&meta_seven_override,
+	&meta_eight_override,
+	&meta_nine_override,
+	&meta_zero_override,
+};
