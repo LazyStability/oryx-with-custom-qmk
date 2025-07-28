@@ -1051,6 +1051,8 @@ bool caps_word_press_user(uint16_t keycode) {
 // Overrides
 const key_override_t delete_key_override =
 	ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t tab_key_override =
+	ko_make_basic(MOD_MASK_SHIFT, KC_TAB, KC_DOT);
 // Override Meta+symbols to be meta+numbers instead
 //DE_SLSH, DE_LBRC, DE_LPRN, DE_LCBR, DE_RCBR, DE_RPRN, DE_RBRC, DE_BSLS, DE_MORE
 const key_override_t meta_one_override = 
@@ -1085,6 +1087,7 @@ const key_override_t meta_zero_override =
 
 const key_override_t *key_overrides[] = {
 	&delete_key_override,
+	&tab_key_override,
 	&meta_one_override,
 	&meta_two_override,
 	&meta_three_override,
