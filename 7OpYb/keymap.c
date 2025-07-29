@@ -1052,7 +1052,14 @@ bool caps_word_press_user(uint16_t keycode) {
 const key_override_t delete_key_override =
 	ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t tab_key_override =
-	ko_make_basic(MOD_MASK_SHIFT, KC_TAB, KC_DOT);
+	ko_make_with_layers_negmods_and_options(
+		MOD_MASK_SHIFT, // Trigger Modifier
+		KC_TAB,         // Trigger key
+		KC_DOT,         // Replacement key
+		(1 << 1),       // Activate on layer 1, this is a bitmask. To use on layer i set (1 << i)
+		MOD_MASK_CA,     // Do not activate if either shift or alt is pressed
+		ko_option_no_reregister_trigger // Specifies that the . key is not registered again after lifting shift
+	);
 // Override Meta+symbols to be meta+numbers instead
 //DE_SLSH, DE_LBRC, DE_LPRN, DE_LCBR, DE_RCBR, DE_RPRN, DE_RBRC, DE_BSLS, DE_MORE
 const key_override_t meta_one_override = 
