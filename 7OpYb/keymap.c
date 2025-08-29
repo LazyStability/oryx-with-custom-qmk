@@ -44,7 +44,7 @@ enum tap_dance_codes {
   DANCE_21,
 };
 
-#define DUAL_FUNC_0 LT(10, KC_F13)
+#define DUAL_FUNC_0 LT(12, KC_F8)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
@@ -146,97 +146,37 @@ bool rgb_matrix_indicators_user(void) {
   if (rawhid_state.rgb_control) {
       return false;
   }
-    if (keyboard_config.disable_layer_led) { return false; }
-  switch (biton32(layer_state)) {
-    case 0:
-      set_layer_color(0);
-      break;
-    case 1:
-      set_layer_color(1);
-      break;
-    case 2:
-      set_layer_color(2);
-      break;
-    case 3:
-      set_layer_color(3);
-      break;
-    case 4:
-      set_layer_color(4);
-      break;
-   default:
-      if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
-        rgb_matrix_set_color_all(0, 0, 0);
-      }
+  if (!keyboard_config.disable_layer_led) { 
+    switch (biton32(layer_state)) {
+      case 0:
+        set_layer_color(0);
+        break;
+      case 1:
+        set_layer_color(1);
+        break;
+      case 2:
+        set_layer_color(2);
+        break;
+      case 3:
+        set_layer_color(3);
+        break;
+      case 4:
+        set_layer_color(4);
+        break;
+     default:
+        if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
+          rgb_matrix_set_color_all(0, 0, 0);
+        }
+    }
+  } else {
+    if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
+      rgb_matrix_set_color_all(0, 0, 0);
+    }
   }
 
   return true;
 }
 
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case ST_MACRO_0:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_S)));
-    }
-    break;
-    case ST_MACRO_1:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_D)));
-    }
-    break;
-    case ST_MACRO_2:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_F)));
-    }
-    break;
-    case ST_MACRO_3:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_J)));
-    }
-    break;
-    case ST_MACRO_4:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_K)));
-    }
-    break;
-    case ST_MACRO_5:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_L)));
-    }
-    break;
-    case ST_MACRO_6:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_ENTER))SS_DELAY(100)  SS_TAP(X_G)SS_DELAY(100)  SS_TAP(X_G)  SS_DELAY(100) SS_TAP(X_ENTER));
-    }
-    break;
-
-    case DUAL_FUNC_0:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_F7);
-        } else {
-          unregister_code16(KC_F7);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(LALT(LCTL(KC_F7)));
-        } else {
-          unregister_code16(LALT(LCTL(KC_F7)));
-        }  
-      }  
-      return false;
-    case RGB_SLD:
-        if (rawhid_state.rgb_control) {
-            return false;
-        }
-        if (record->event.pressed) {
-            rgblight_mode(1);
-        }
-        return false;
-  }
-  return true;
-}
 
 
 typedef struct {
@@ -1023,3 +963,69 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_20] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_20, dance_20_finished, dance_20_reset),
         [DANCE_21] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_21, dance_21_finished, dance_21_reset),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case ST_MACRO_0:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_S)));
+    }
+    break;
+    case ST_MACRO_1:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_D)));
+    }
+    break;
+    case ST_MACRO_2:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_F)));
+    }
+    break;
+    case ST_MACRO_3:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_J)));
+    }
+    break;
+    case ST_MACRO_4:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_K)));
+    }
+    break;
+    case ST_MACRO_5:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LGUI(SS_TAP(X_D))SS_DELAY(100)  SS_LGUI(SS_TAP(X_L)));
+    }
+    break;
+    case ST_MACRO_6:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LSFT(SS_TAP(X_ENTER))SS_DELAY(100)  SS_TAP(X_G)SS_DELAY(100)  SS_TAP(X_G)  SS_DELAY(100) SS_TAP(X_ENTER));
+    }
+    break;
+
+    case DUAL_FUNC_0:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_F7);
+        } else {
+          unregister_code16(KC_F7);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(LALT(LCTL(KC_F7)));
+        } else {
+          unregister_code16(LALT(LCTL(KC_F7)));
+        }  
+      }  
+      return false;
+    case RGB_SLD:
+        if (rawhid_state.rgb_control) {
+            return false;
+        }
+        if (record->event.pressed) {
+            rgblight_mode(1);
+        }
+        return false;
+  }
+  return true;
+}
+
