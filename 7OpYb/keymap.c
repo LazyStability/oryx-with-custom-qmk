@@ -1,3 +1,10 @@
+// Custom overrides
+#define KC_F20 QK_REPEAT_KEY
+#define KC_F21 QK_LOCK
+#define KC_F22 QK_LAYER_LOCK
+
+// ============================ END OVERRIDES ==================================
+
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
@@ -1009,4 +1016,88 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+
+// Custom QMK here
+// Caps words for german keyboard
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case DE_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+// Overrides
+const key_override_t delete_key_override =
+	ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t tab_key_override =
+	ko_make_with_layers_negmods_and_options(
+		MOD_MASK_SHIFT, // Trigger Modifier
+		KC_TAB,         // Trigger key
+		KC_DOT,         // Replacement key
+		(1 << 1),       // Activate on layer 1, this is a bitmask. To use on layer i set (1 << i)
+		MOD_MASK_CA,     // Do not activate if either shift or alt is pressed
+		ko_option_no_reregister_trigger // Specifies that the . key is not registered again after lifting shift
+	);
+// Override Meta+symbols to be meta+numbers instead
+//DE_SLSH, DE_LBRC, DE_LPRN, DE_LCBR, DE_RCBR, DE_RPRN, DE_RBRC, DE_BSLS, DE_MORE
+const key_override_t meta_one_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LESS, G(KC_1));
+
+const key_override_t meta_two_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_SLSH, G(KC_2));
+
+const key_override_t meta_three_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LBRC, G(KC_3));
+
+const key_override_t meta_four_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LPRN, G(KC_4));
+
+const key_override_t meta_five_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_LCBR, G(KC_5));
+
+const key_override_t meta_six_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_RCBR, G(KC_6));
+
+const key_override_t meta_seven_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_RPRN, G(KC_7));
+
+const key_override_t meta_eight_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_RBRC, G(KC_8));
+
+const key_override_t meta_nine_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_BSLS, G(KC_9));
+
+const key_override_t meta_zero_override = 
+	ko_make_basic(MOD_MASK_GUI, DE_MORE, G(KC_0));
+
+const key_override_t *key_overrides[] = {
+	&delete_key_override,
+	&tab_key_override,
+	&meta_one_override,
+	&meta_two_override,
+	&meta_three_override,
+	&meta_four_override,
+	&meta_five_override,
+	&meta_six_override,
+	&meta_seven_override,
+	&meta_eight_override,
+	&meta_nine_override,
+	&meta_zero_override,
+};
+#undef KC_F20
+#undef KC_F21
+#undef KC_F22
 

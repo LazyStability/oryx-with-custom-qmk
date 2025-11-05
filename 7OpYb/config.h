@@ -12,3 +12,5 @@
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
+// Custom qmk changes
+#define NO_ALT_REPEAT_KEY
